@@ -1,31 +1,3 @@
-import string
-from OPcode import *
-from Functions import *
-
-# Dictionaries
-
-op_code_size = 5
-
-register_size = 3
-memory_address_size = 8
-immediate_size = 8
-registor = [0, 0, 0, 0, 0, 0, 0]
-ls_instructions1 = ['add', 'sub', 'movi', 'movr', 'ld', 'st', 'mul', 'div', 'rs', 'ls', 'xor', 'or',
-                    'and', 'not', 'cmp', 'jmp', 'jlt', 'jgt', 'je', 'hlt']
-ls_instructions2 = ['add', 'sub', 'mov', 'ld', 'st', 'mul', 'div', 'rs', 'ls', 'xor', 'or',
-                    'and', 'not', 'cmp', 'jmp', 'jlt', 'jgt', 'je', 'hlt']
-ls_instructions3 = ['add', 'sub', 'mov', 'ld', 'st', 'mul', 'div', 'rs', 'ls', 'xor', 'or',
-                    'and', 'not', 'cmp', 'jmp', 'jlt', 'jgt', 'je', 'hlt', 'R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6',
-                    'FLAGS']
-ls_registers = ['R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6']
-ls_registers_2 = ['R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6',"FLAGS"]
-numarr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-alphanum = list(string.ascii_lowercase + string.ascii_uppercase + string.digits)
-alphanum.append('_')
-
-variable_store = {}
-label_store = {}
-
 
 def typeconvertor(a, type, line):
     # Type A ->

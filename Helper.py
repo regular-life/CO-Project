@@ -12,6 +12,7 @@ immediate_size = 8
 registor = [0, 0, 0, 0, 0, 0, 0]
 ls_instructions1 = ['add', 'sub', 'movi', 'movr', 'ld', 'st', 'mul', 'div', 'rs', 'ls', 'xor', 'or',
                     'and', 'not', 'cmp', 'jmp', 'jlt', 'jgt', 'je', 'hlt']
+
 ls_instructions2 = ['add', 'sub', 'mov', 'ld', 'st', 'mul', 'div', 'rs', 'ls', 'xor', 'or',
                     'and', 'not', 'cmp', 'jmp', 'jlt', 'jgt', 'je', 'hlt']
 ls_instructions3 = ['add', 'sub', 'mov', 'ld', 'st', 'mul', 'div', 'rs', 'ls', 'xor', 'or',

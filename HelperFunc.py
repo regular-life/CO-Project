@@ -1,23 +1,14 @@
-# inports
+# imports
 from Dic import *
 from HelperFunc import *
 import sys
 
 doc = []
+
 line_list = sys.stdin.readlines()
 for line in line_list:
     current_sentence = line.strip()
     doc.append(current_sentence)
-
-# line = input()
-# if line:
-#     doc.append(line)
-# while (line[:5] != "11010"):
-#     line = input()
-#     doc.append(line)
-# line_list = sys.stdin.readlines()
-
-# store values
 
 registor = [0, 0, 0, 0, 0, 0, 0]
 address_loc = {}
@@ -64,11 +55,13 @@ while (cur_line[:5] != "11010"):
             reg3 = (cur_line[13:16])
             val_2 = BinaryToFloatFormat(reg2)
             val_3 = BinaryToFloatFormat(reg3)
+            
             if (val_2 + val_3 > 31.5 or val_2 + val_3 < 0.125):
                 registor[bintodec(reg1)] = 0
                 flag[0] = 1
             else:
                 registor[bintodec(reg1)] = floatFormatToBinary(val_2 + val_3)
+                
         if (OP2[OP_code] == "subf"):
             reg1 = (cur_line[7:10])
             reg2 = (cur_line[10:13])
@@ -90,30 +83,3 @@ while (cur_line[:5] != "11010"):
 
         line_no = line_no + 1
         cur_line = doc[line_no]
-    if (type == 'B'):
-
-        reg1 = (cur_line[6:9])
-
-        Imm = bintodec(cur_line[9:])
-        reg2 = reg1
-
-        if (OP2[OP_code] == "movi"):
-            registor[bintodec(reg1)] = Imm
-
-        if (OP2[OP_code] == "rs"):
-            for i in range(Imm):
-                reg2 = reg2[0:2]
-                reg2 = "0" + reg2
-            registor[bintodec(reg1)] = bintodec(reg2)
-        if (OP2[OP_code] == "ls"):
-            for i in range(Imm):
-                reg2 = reg2[1:3]
-                reg2 = reg2 + "0"
-            registor[bintodec(reg1)] = bintodec(reg2)
-        if (OP2[OP_code] == "movf"):
-            registor[bintodec(reg1)] = float(Imm)
-        flag = [0,0,0,0]
-
-        line_no = line_no + 1
-        cur_line = doc[line_no]
-

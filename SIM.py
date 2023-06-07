@@ -117,3 +117,139 @@ while (cur_line[:5] != "11010"):
 
         line_no = line_no + 1
         cur_line = doc[line_no]
+        
+    if (type == 'C'):
+
+        reg1 = bintodec(cur_line[10:13])
+        reg2 = bintodec(cur_line[13:])
+
+        if (OP2[OP_code] == "div"):
+
+            if (reg2 == 0):
+
+                flag[0] = 1
+                registor[0] = 0
+                registor[1] = 0
+
+            else:
+
+                registor[0] = registor[reg1] // registor[reg2]
+                registor[1] = registor[reg1] % registor[reg2]
+
+                flag = [0,0,0,0]
+
+        elif (OP2[OP_code] == "movr"):
+            if (reg2 >= 7):
+                registor[reg1] = bintodec(flagtobin(flag))
+            else:
+                registor[reg1] = registor[reg2]
+            flag = [0,0,0,0]
+
+        elif (OP2[OP_code] == "not"):
+
+            registor[reg1] = bintodec(notf(decToBinary(registor[reg2], 16)))
+            flag = [0,0,0,0]
+        elif (OP2[OP_code] == "cmp"):
+
+            if (registor[reg1] == registor[reg2]):
+
+                flag[3] = 1
+
+            if (registor[reg1] > registor[reg2]):
+
+                flag[2] = 1
+
+            if (registor[reg1] < registor[reg2]):
+                flag[1] = 1
+
+        line_no = line_no + 1
+        cur_line = doc[line_no]
+
+    if (type == 'D'):
+
+        reg1 = bintodec(cur_line[6:9])
+        address = cur_line[9:]
+
+        if (OP2[OP_code] == "ld"):
+
+            if (address in address_loc):
+                registor[reg1] = address_loc[address]
+            else:
+                registor[reg1] = 0
+
+        if (OP2[OP_code] == "st"):
+            address_loc[address] = registor[reg1]
+
+        line_no = line_no + 1
+        cur_line = doc[line_no]
+
+        flag = [0,0,0,0]
+    if (type == 'E'):
+
+        address = bintodec(cur_line[-7:]) 
+        x = line_no
+        if (OP2[OP_code] == "jmp"):
+
+            line_no = address
+            cur_line = doc[address]
+
+        if (OP2[OP_code] == "jlt"):
+
+            if (flag[1]):
+                line_no = address
+                test = True
+                cur_line = doc[address]
+
+                flag = [0,0,0,0]
+            else:
+                line_no = line_no + 1
+                cur_line = doc[line_no]
+                flag = [0,0,0,0]
+
+        if (OP2[OP_code] == "jgt"):
+
+            if (flag[2]):
+                test = True
+
+                line_no = address
+                cur_line = doc[address]
+                flag = [0,0,0,0]
+
+            else:
+                line_no = line_no + 1
+                cur_line = doc[line_no]
+                flag = [0,0,0,0]
+
+        if (OP2[OP_code] == "je"):
+
+            if (flag[3]):
+                test = True
+
+                line_no = address
+                cur_line = doc[address]
+                flag = [0,0,0,0]
+
+            else:
+                line_no = line_no + 1
+                cur_line = doc[line_no]
+                flag = [0,0,0,0]
+    print(decToBinary(x, 7) + "        " + decToBinary(registor[0], 16), decToBinary(registor[1], 16),decToBinary(registor[2], 16), decToBinary(registor[3], 16), decToBinary(registor[4], 16),decToBinary(registor[5], 16), decToBinary(registor[6], 16), flagtobin(flag))
+    flag = [0,0,0,0]
+
+    print(decToBinary(line_no, 7) + "        " + decToBinary(registor[0], 16), decToBinary(registor[1], 16),decToBinary(registor[2], 16), decToBinary(registor[3], 16), decToBinary(registor[4], 16),decToBinary(registor[5], 16), decToBinary(registor[6], 16), flagtobin(flag))
+
+    for i in doc:
+    print(i.strip())
+    x = len(doc)
+
+    while (x <= 127):
+    if (decToBinary(x, 7) in address_loc):
+        print(decToBinary(address_loc[decToBinary(x, 7)], 16).strip())
+    else:
+        print(decToBinary(0, 16).strip())
+    x = x + 1
+
+    # with open(r"/home/sanyam/Desktop/hlo",'r') as f:
+    #     a = f.readlines()
+    #     for lines in a:
+    #         print(lines,end="")

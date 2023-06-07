@@ -73,3 +73,24 @@ def notf(a):
         else:
             c = c + "1"
     return bintodec(c)
+
+def floatFormatToBinary(a):
+    bin_no = fractional_to_binary(a, 8)
+    decimal_location = bin_no.find('.')
+    integer_part = bin_no[0 : decimal_location - 1]
+    fractional_part = bin_no[decimal_location + 1 : len(bin_no)]
+    Exponent = decToBinary(2 + len(integer_part))
+    Mantissa = integer_part[1:] + fractional_part
+    while (len(Exponent) != 3):
+        Exponent = "0" + Exponent
+    while (len(Mantissa) != 5):
+        Mantissa += "0"
+    new_representation = Exponent + Mantissa
+    return new_representation
+   
+def BinaryToFloatFormat(a):
+    nu = 0
+    for i in range(8):
+        if (a[i] == "1"):
+            nu += 2 ** (2 - i)
+    return nu

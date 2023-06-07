@@ -74,6 +74,19 @@ def notf(a):
             c = c + "1"
     return bintodec(c)
 
+def fractional_to_binary(number, precision):
+    integer_part = int(number)
+    fractional_part = number - integer_part
+    binary_integer = bin(integer_part)[2:]
+    binary_fractional = ""
+    while (fractional_part > 0 and len(binary_fractional) < precision):
+        fractional_part *= 2
+        bit = int(fractional_part)
+        binary_fractional += str(bit)
+        fractional_part -= bit
+    binary_representation = binary_integer + "." + binary_fractional
+    return binary_representation
+
 def floatFormatToBinary(a):
     bin_no = fractional_to_binary(a, 8)
     decimal_location = bin_no.find('.')

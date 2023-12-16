@@ -1,7 +1,7 @@
 
 # inports
 from Dic import *
-from HelperFunc import *
+from Functions import *
 import sys
 
 doc = []
@@ -239,15 +239,16 @@ while (cur_line[:5] != "11010"):
     print(decToBinary(line_no, 7) + "        " + decToBinary(registor[0], 16), decToBinary(registor[1], 16),decToBinary(registor[2], 16), decToBinary(registor[3], 16), decToBinary(registor[4], 16),decToBinary(registor[5], 16), decToBinary(registor[6], 16), flagtobin(flag))
 
     for i in doc:
-    print(i.strip())
+        print(i.strip())
+        
     x = len(doc)
 
     while (x <= 127):
-    if (decToBinary(x, 7) in address_loc):
-        print(decToBinary(address_loc[decToBinary(x, 7)], 16).strip())
-    else:
-        print(decToBinary(0, 16).strip())
-    x = x + 1
+        if (decToBinary(x, 7) in address_loc):
+            print(decToBinary(address_loc[decToBinary(x, 7)], 16).strip())
+        else:
+            print(decToBinary(0, 16).strip())
+        x = x + 1
 
     # with open(r"/home/sanyam/Desktop/hlo",'r') as f:
     #     a = f.readlines()

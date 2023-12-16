@@ -1,13 +1,18 @@
 from Helper import *
 from Error import *
 
+import sys
+
 document = []
 current_sentence = []
-
-with open("input.txt", "r") as f:
-    for line in f:
-        current_sentence = line.strip().split()
-        document.append(current_sentence)
+line_list = sys.stdin.readlines()
+for line in line_list:
+    current_sentence = line.strip().split()
+    document.append(current_sentence)
+#with open("input.txt", "r") as f:
+ #   for line in f:
+  #      current_sentence = line.strip().split()
+   #     document.append(current_sentence)
 
 no_of_sentence = len(document)
 
@@ -89,7 +94,6 @@ if len(Shelf.lines) + len(variable_store) >128:
     print(Error_Code[100])
     exit()
 
-with open("output.txt","w") as f:
-    for i in Shelf.lines:
-        f.writelines(i.bin)
-        f.write("\n")
+# with open("output.txt","w") as f:
+for i in Shelf.lines:
+    print(i.bin)

@@ -1,4 +1,4 @@
-import string
+from string import ascii_lowercase, ascii_uppercase, digits
 from OPcode import *
 from Functions import *
 
@@ -21,7 +21,7 @@ ls_instructions3 = ['add', 'sub', 'mov', 'ld', 'st', 'mul', 'div', 'rs', 'ls', '
 ls_registers = ['R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6']
 ls_registers_2 = ['R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6',"FLAGS"]
 numarr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-alphanum = list(string.ascii_lowercase + string.ascii_uppercase + string.digits)
+alphanum = list(ascii_lowercase + ascii_uppercase + digits)
 alphanum.append('_')
 
 variable_store = {}
@@ -46,27 +46,27 @@ def typeconvertor(a, type, line):
                 return
 
         elif line[0] == "add":
-            return OPcode.OPcode_table["add"][0] + "00" + decToBinary(int(line[1][-1]), 3) + decToBinary(
+            return OPcode_table["add"][0] + "00" + decToBinary(int(line[1][-1]), 3) + decToBinary(
                 int(line[2][-1]), 3) + decToBinary(int(line[3][-1]), 3)
 
         elif line[0] == "sub":
-            return OPcode.OPcode_table["sub"][0] + "00" + decToBinary(int(line[1][-1]), 3) + decToBinary(
+            return OPcode_table["sub"][0] + "00" + decToBinary(int(line[1][-1]), 3) + decToBinary(
                 int(line[2][-1]), 3) + decToBinary(int(line[3][-1]), 3)
 
         elif line[0] == "mul":
-            return OPcode.OPcode_table["mul"][0] + "00" + decToBinary(int(line[1][-1]), 3) + decToBinary(
+            return OPcode_table["mul"][0] + "00" + decToBinary(int(line[1][-1]), 3) + decToBinary(
                 int(line[2][-1]), 3) + decToBinary(int(line[3][-1]), 3)
 
         elif line[0] == "xor":
-            return OPcode.OPcode_table["xor"][0] + "00" + decToBinary(int(line[1][-1]), 3) + decToBinary(
+            return OPcode_table["xor"][0] + "00" + decToBinary(int(line[1][-1]), 3) + decToBinary(
                 int(line[2][-1]), 3) + decToBinary(int(line[3][-1]), 3)
 
         elif line[0] == "or":
-            return OPcode.OPcode_table["or"][0] + "00" + decToBinary(int(line[1][-1]), 3) + decToBinary(
+            return OPcode_table["or"][0] + "00" + decToBinary(int(line[1][-1]), 3) + decToBinary(
                 int(line[2][-1]), 3) + decToBinary(int(line[3][-1]), 3)
 
         elif line[0] == "and":
-            return OPcode.OPcode_table["and"][0] + "00" + decToBinary(int(line[1][-1]), 3) + decToBinary(
+            return OPcode_table["and"][0] + "00" + decToBinary(int(line[1][-1]), 3) + decToBinary(
                 int(line[2][-1]), 3) + decToBinary(int(line[3][-1]), 3)
 
     # Type B
@@ -90,15 +90,15 @@ def typeconvertor(a, type, line):
                 return
 
         elif line[0] == "movi":
-            return OPcode.OPcode_table["movi"][0] + "0" + decToBinary(int(line[1][-1]), 3) + decToBinary(
+            return OPcode_table["movi"][0] + "0" + decToBinary(int(line[1][-1]), 3) + decToBinary(
                 int(line[2][1:]), 7)
 
         elif line[0] == "ls":
-            return OPcode.OPcode_table["ls"][0] + "0" + decToBinary(int(line[1][-1]), 3) + decToBinary(int(line[2][1:]),
+            return OPcode_table["ls"][0] + "0" + decToBinary(int(line[1][-1]), 3) + decToBinary(int(line[2][1:]),
                                                                                                        7)
 
         elif line[0] == "rs":
-            return OPcode.OPcode_table["rs"][0] + "0" + decToBinary(int(line[1][-1]), 3) + decToBinary(int(line[2][1:]),
+            return OPcode_table["rs"][0] + "0" + decToBinary(int(line[1][-1]), 3) + decToBinary(int(line[2][1:]),
                                                                                                        7)
 
     if type == "C":
@@ -112,20 +112,20 @@ def typeconvertor(a, type, line):
 
         elif line[0] == "movr":
             if line[2] == "FLAGS":
-                return OPcode.OPcode_table["movr"][0] + "0" * 5 + decToBinary(int(line[1][-1]), 3) + "111"
-            return OPcode.OPcode_table["movr"][0] + "0" * 5 + decToBinary(int(line[1][-1]), 3) + decToBinary(
+                return OPcode_table["movr"][0] + "0" * 5 + decToBinary(int(line[1][-1]), 3) + "111"
+            return OPcode_table["movr"][0] + "0" * 5 + decToBinary(int(line[1][-1]), 3) + decToBinary(
                 int(line[2][-1]), 3)
 
         elif line[0] == "div":
-            return OPcode.OPcode_table["div"][0] + "0" * 5 + decToBinary(int(line[1][-1]), 3) + decToBinary(
+            return OPcode_table["div"][0] + "0" * 5 + decToBinary(int(line[1][-1]), 3) + decToBinary(
                 int(line[2][-1]), 3)
 
         elif line[0] == "not":
-            return OPcode.OPcode_table["not"][0] + "0" * 5 + decToBinary(int(line[1][-1]), 3) + decToBinary(
+            return OPcode_table["not"][0] + "0" * 5 + decToBinary(int(line[1][-1]), 3) + decToBinary(
                 int(line[2][-1]), 3)
 
         elif line[0] == "cmp":
-            return OPcode.OPcode_table["cmp"][0] + "0" * 5 + decToBinary(int(line[1][-1]), 3) + decToBinary(
+            return OPcode_table["cmp"][0] + "0" * 5 + decToBinary(int(line[1][-1]), 3) + decToBinary(
                 int(line[2][-1]), 3)
 
     if type == "D":
@@ -145,10 +145,10 @@ def typeconvertor(a, type, line):
             return
 
         elif line[0] == "ld":
-            return OPcode.OPcode_table["ld"][0] + "0" + decToBinary(int(line[1][-1]), 3) + decToBinary(
+            return OPcode_table["ld"][0] + "0" + decToBinary(int(line[1][-1]), 3) + decToBinary(
                 variable_store[line[2]][0], 7)
         elif line[0] == "st":
-            return OPcode.OPcode_table["st"][0] + "0" + decToBinary(int(line[1][-1]), 3) + decToBinary(
+            return OPcode_table["st"][0] + "0" + decToBinary(int(line[1][-1]), 3) + decToBinary(
                 variable_store[line[2]][0], 7)
 
     if type == "E":
@@ -161,13 +161,13 @@ def typeconvertor(a, type, line):
             return
 
         elif line[0] == "jmp":
-            return OPcode.OPcode_table["jmp"][0] + "0" * 4 + decToBinary(label_store[line[-1]][0], 7)
+            return OPcode_table["jmp"][0] + "0" * 4 + decToBinary(label_store[line[-1]][0], 7)
         elif line[0] == "jlt":
-            return OPcode.OPcode_table["jlt"][0] + "0" * 4 + decToBinary(label_store[line[-1]][0], 7)
+            return OPcode_table["jlt"][0] + "0" * 4 + decToBinary(label_store[line[-1]][0], 7)
         elif line[0] == "jgt":
-            return OPcode.OPcode_table["jgt"][0] + "0" * 4 + decToBinary(label_store[line[-1]][0], 7)
+            return OPcode_table["jgt"][0] + "0" * 4 + decToBinary(label_store[line[-1]][0], 7)
         elif line[0] == "je":
-            return OPcode.OPcode_table["je"][0] + "0" * 4 + decToBinary(label_store[line[-1]][0], 7)
+            return OPcode_table["je"][0] + "0" * 4 + decToBinary(label_store[line[-1]][0], 7)
 
     if type == "F":
         if len(line) != 1:

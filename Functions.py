@@ -1,15 +1,13 @@
-import OPcode
-import Helper
-
+from OPcode import *
 
 # Functions
 
 def opcodesetter(name):
-    return OPcode.OPcode_table[name][0]
+    return OPcode_table[name][0]
 
 
 def opcodetype(name):
-    return OPcode.OPcode_table[name][1]
+    return OPcode_table[name][1]
 
 
 def decToBinary(n, x):
@@ -74,6 +72,8 @@ def notf(a):
             c = c + "1"
     return bintodec(c)
 
+
+
 def fractional_to_binary(number, precision):
     integer_part = int(number)
     fractional_part = number - integer_part
@@ -90,7 +90,7 @@ def fractional_to_binary(number, precision):
 def floatFormatToBinary(a):
     bin_no = fractional_to_binary(a, 8)
     decimal_location = bin_no.find('.')
-    integer_part = bin_no[0 : decimal_location - 1]
+    integer_part = bin_no[0 : decimal_location]
     fractional_part = bin_no[decimal_location + 1 : len(bin_no)]
     Exponent = decToBinary(2 + len(integer_part))
     Mantissa = integer_part[1:] + fractional_part

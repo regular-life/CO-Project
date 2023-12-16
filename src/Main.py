@@ -1,5 +1,5 @@
-from Helper import *
-from Error import *
+from utils.Helper import *
+from data.Error import *
 
 import sys
 

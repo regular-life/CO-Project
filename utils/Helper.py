@@ -1,5 +1,5 @@
 from string import ascii_lowercase, ascii_uppercase, digits
-from OPcode import *
+from data.OPcode import *
 from Functions import *
 
 # Dictionaries

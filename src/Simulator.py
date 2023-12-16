@@ -1,7 +1,7 @@
 
 # inports
-from Dic import *
-from Functions import *
+from data.Dic import *
+from utils.Functions import *
 import sys
 
 doc = []

@@ -1,4 +1,4 @@
-from OPcode import *
+from data.OPcode import *
 
 # Functions
 

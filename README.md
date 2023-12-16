@@ -49,7 +49,7 @@ The project focuses on building a custom assembly-like language compiler and sim
 - A script that combines compilation and simulation for convenience.
 - Executes the `Main.py` and `Simulator.py` scripts sequentially.
 
-- <br />
+<br />
 
 ---
 
